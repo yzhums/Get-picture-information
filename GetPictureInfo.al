@@ -68,12 +68,12 @@ pageextension 50113 ZYCustomerCardExt extends "Customer Card"
     var
         Image: Codeunit Image;
         InS: InStream;
-        ItemTenantMedia: Record "Tenant Media";
+        CustTenantMedia: Record "Tenant Media";
     begin
         if Rec.Image.HasValue then begin
-            ItemTenantMedia.Get(Rec.Image.MediaId);
-            ItemTenantMedia.CalcFields(Content);
-            ItemTenantMedia.Content.CreateInStream(InS, TextEncoding::UTF8);
+            CustTenantMedia.Get(Rec.Image.MediaId);
+            CustTenantMedia.CalcFields(Content);
+            CustTenantMedia.Content.CreateInStream(InS, TextEncoding::UTF8);
             Image.FromStream(InS);
             Message(Msg, Image.GetFormat(), InS.Length, Image.GetWidth(), Image.GetHeight());
         end;
